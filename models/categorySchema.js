@@ -1,31 +1,10 @@
-/*
-const {GraphQLObjectType,
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-  GraphQLSchema,
-  GraphQLNonNull}
-  = require('graphql');
-
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-export const categoryType = new GraphQLObjectType({
-  name: 'category',
-  description: 'Animal category',
-  fields: () => ({
-    id: {type: GraphQLID},
-    categoryName: {type: GraphQLString},
-  }),
+const categorySchema = new Schema({
+  id: String,
+  categoryName: String,
 });
 
-/!*
-module.exports = mongoose.model("AnimalType", categoryType);
-*!/
-
-
-module.exports = new GraphQLSchema({
-  type: categoryType,
-});
-*/
+module.exports = mongoose.model("AnimalType", categorySchema);

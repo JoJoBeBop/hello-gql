@@ -2,22 +2,10 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const speciesType = new GraphQLObjectType({
-  query: new GraphQLObjectType({
-
-    name: 'species',
-  description: 'Animal species',
-  fields: () => ({
-    id: {type: GraphQLID},
-    speciesName: {type: GraphQLString},
-    category: {
-      type: categoryType,
-      resolve(parent, args) {
-        return categoryData.find(categ => categ.id === parent.category);
-      }
-    },
-  }),
-  }),
+const speciesSchema = new Schema({
+  id: String,
+  speciesName: String,
+  category: [{type: Schema.Types.ObjectID, ref: "Category"}]
 });
 
-module.exports = mongoose.model("AnimalType", animalType);
+module.exports = mongoose.model("speciesSchema", speciesSchema);
